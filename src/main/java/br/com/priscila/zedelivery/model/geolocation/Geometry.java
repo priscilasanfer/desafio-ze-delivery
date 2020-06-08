@@ -1,4 +1,4 @@
-package br.com.priscila.zedelivery.modelo.geolocation;
+package br.com.priscila.zedelivery.model.geolocation;
 
 import org.geojson.GeoJsonObject;
 

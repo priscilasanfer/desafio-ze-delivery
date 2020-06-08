@@ -1,4 +1,4 @@
-package br.com.priscila.zedelivery.modelo.geolocation;
+package br.com.priscila.zedelivery.model.geolocation;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
