@@ -1,4 +1,4 @@
-package br.com.priscila.zedelivery.dto;
+package br.com.priscila.zedelivery.controller.dto;
 
 import br.com.priscila.zedelivery.model.Address;
 import br.com.priscila.zedelivery.model.CoverageArea;
