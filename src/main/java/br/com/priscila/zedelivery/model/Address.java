@@ -1,51 +1,26 @@
 package br.com.priscila.zedelivery.model;
 
 import br.com.priscila.zedelivery.model.enums.Type;
-import org.geojson.Point;
+import com.vividsolutions.jts.geom.Point;
+import lombok.*;
 
-import java.io.Serializable;
+
+import javax.persistence.*;
 import java.util.Objects;
 
-public class Address implements Serializable {
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Address  {
 
-    private static final long serialVersionUID = 1L;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Type type;
+
     private Point coordinates;
-
-    public Address() {
-    }
-
-    public Address(Long id,  Type type, Point coordinates) {
-        this.id = id;
-        this.type = type;
-        this.coordinates = coordinates;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Point getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Point coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
 
     @Override
     public boolean equals(Object o) {

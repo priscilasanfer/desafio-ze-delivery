@@ -1,48 +1,29 @@
 package br.com.priscila.zedelivery.model;
 
 import br.com.priscila.zedelivery.model.enums.Type;
-import org.geojson.MultiPolygon;
+import com.vividsolutions.jts.geom.MultiPolygon;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.HashSet;
+
+import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
-public class CoverageArea implements Serializable {
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class CoverageArea {
 
-    private static final long serialVersionUID = 1L;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Type type;
-    private Set<MultiPolygon> coordinates = new HashSet<>();
 
-    public CoverageArea() {
-    }
-
-    public CoverageArea(Long id, Type type) {
-        this.id = id;
-        this.type = type;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public Set<MultiPolygon> getCoordinates() {
-        return coordinates;
-    }
+    private MultiPolygon coordinates;
 
     @Override
     public boolean equals(Object o) {

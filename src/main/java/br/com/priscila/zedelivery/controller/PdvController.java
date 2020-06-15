@@ -1,35 +1,30 @@
 package br.com.priscila.zedelivery.controller;
 
-
-import br.com.priscila.zedelivery.model.Pdv;
+import br.com.priscila.zedelivery.controller.dto.PdvDto;
 import br.com.priscila.zedelivery.services.PdvService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping(value = "/pdvs")
+@AllArgsConstructor
 public class PdvController {
 
-    @Autowired
     private PdvService service;
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public ResponseEntity<List<Pdv>> listaTodos() {
-        List<Pdv> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+    public List<PdvDto> listaTodos() {
+        return service.findAll();
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Pdv> findById(@PathVariable Long id){
-        Pdv obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+    public PdvDto findById(@PathVariable Long id){
+        return service.findById(id);
     }
 
 }
