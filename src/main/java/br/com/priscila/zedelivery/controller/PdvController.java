@@ -1,12 +1,16 @@
 package br.com.priscila.zedelivery.controller;
 
 
+import br.com.priscila.zedelivery.domain.Pdv;
+import br.com.priscila.zedelivery.dto.request.PdvRequestDto;
 import br.com.priscila.zedelivery.dto.response.PdvResponseDto;
 import br.com.priscila.zedelivery.services.PdvService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -30,9 +34,15 @@ public class PdvController {
     }
 
 
-    @GetMapping("/list/{tradingName}")
     @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/list/{tradingName}")
     public List<PdvResponseDto> getPdvByTrandingName(@PathVariable("tradingName") String trandingName) {
         return service.findByName(trandingName);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PdvResponseDto createPdv(@Valid @RequestBody PdvRequestDto pdvRequestDto){
+        return service.create(pdvRequestDto);
     }
 }

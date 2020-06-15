@@ -1,6 +1,7 @@
 package br.com.priscila.zedelivery.services;
 
 import br.com.priscila.zedelivery.domain.Pdv;
+import br.com.priscila.zedelivery.dto.request.PdvRequestDto;
 import br.com.priscila.zedelivery.dto.response.PdvResponseDto;
 import br.com.priscila.zedelivery.mapper.PdvMapper;
 import br.com.priscila.zedelivery.repository.PdvRepository;
@@ -35,7 +36,9 @@ public class PdvService {
                 .collect(Collectors.toList());
     }
 
-    public Pdv insert(PdvResponseDto pdvResponseDto) {
-        return repository.save(PdvMapper.INSTANCE.pdvResponseDtoToPdv(pdvResponseDto));
+    public PdvResponseDto create(PdvRequestDto pdvRequestDto) {
+        Pdv pdv = PdvMapper.INSTANCE.pdvRequestDtoToPdv(pdvRequestDto);
+        pdv = repository.save(pdv);
+        return PdvMapper.INSTANCE.pdvToPdvResponseDto(pdv);
     }
 }
