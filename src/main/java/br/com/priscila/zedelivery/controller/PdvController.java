@@ -28,10 +28,11 @@ public class PdvController {
     public PdvResponseDto findById(@PathVariable Long id) {
         return service.findById(id);
     }
-//
-//    @GetMapping("/{name}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<PdvResponseDto> getPdvByName(@PathVariable("name") String name) {
-//        return service.findByName(name);
-//    }
+
+
+    @GetMapping("/list/{tradingName}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PdvResponseDto> getPdvByTrandingName(@PathVariable("tradingName") String trandingName) {
+        return service.findByName(trandingName);
+    }
 }

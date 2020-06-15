@@ -10,6 +10,6 @@ public interface PdvMapper {
 
     PdvMapper INSTANCE = Mappers.getMapper(PdvMapper.class);
 
-    Pdv pdvDtoToPdv(PdvResponseDto pdvResponseDto);
-    PdvResponseDto pdvToPdvDto(Pdv pdv);
+    Pdv pdvResponseDtoToPdv(PdvResponseDto pdvResponseDto);
+    PdvResponseDto pdvToPdvResponseDto(Pdv pdv);
 }

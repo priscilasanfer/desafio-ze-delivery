@@ -19,23 +19,23 @@ public class PdvService {
 
     public List<PdvResponseDto> findAll() {
         return repository.findAll().stream()
-                .map(pdv -> PdvMapper.INSTANCE.pdvToPdvDto(pdv))
+                .map(pdv -> PdvMapper.INSTANCE.pdvToPdvResponseDto(pdv))
                 .collect(Collectors.toList());
     }
 
     public PdvResponseDto findById(Long id) {
         Pdv pdv = repository.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
-        return PdvMapper.INSTANCE.pdvToPdvDto(pdv);
+        return PdvMapper.INSTANCE.pdvToPdvResponseDto(pdv);
     }
 
     public List<PdvResponseDto> findByName(String tradingName) {
         return repository.findByTradingNameContainingIgnoreCase(tradingName).stream()
-                .map(pdv -> PdvMapper.INSTANCE.pdvToPdvDto(pdv))
+                .map(pdv -> PdvMapper.INSTANCE.pdvToPdvResponseDto(pdv))
                 .collect(Collectors.toList());
     }
 
     public Pdv insert(PdvResponseDto pdvResponseDto) {
-        return repository.save(PdvMapper.INSTANCE.pdvDtoToPdv(pdvResponseDto));
+        return repository.save(PdvMapper.INSTANCE.pdvResponseDtoToPdv(pdvResponseDto));
     }
 }

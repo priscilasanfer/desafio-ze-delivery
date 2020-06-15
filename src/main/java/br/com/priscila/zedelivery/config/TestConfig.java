@@ -52,7 +52,14 @@ public class TestConfig implements CommandLineRunner {
 //                        .build())
                 .build();
 
-        pdvRepository.saveAll(Arrays.asList(pdv1));
+
+        Pdv pdv2 = Pdv.builder().id(null)
+                .tradingName("Festa Junina")
+                .ownerName("Facebook Joao")
+                .document("02.453.716/000170")
+                .build();
+
+        pdvRepository.saveAll(Arrays.asList(pdv1, pdv2));
 
     }
 }
