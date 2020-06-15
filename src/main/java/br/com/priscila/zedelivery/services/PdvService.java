@@ -1,14 +1,14 @@
 package br.com.priscila.zedelivery.services;
 
-import br.com.priscila.zedelivery.controller.dto.PdvDto;
+import br.com.priscila.zedelivery.domain.Pdv;
+import br.com.priscila.zedelivery.dto.response.PdvResponseDto;
 import br.com.priscila.zedelivery.mapper.PdvMapper;
-import br.com.priscila.zedelivery.model.Pdv;
 import br.com.priscila.zedelivery.repository.PdvRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,23 +17,25 @@ public class PdvService {
 
     private PdvRepository repository;
 
-    public List<PdvDto> findAll() {
+    public List<PdvResponseDto> findAll() {
         return repository.findAll().stream()
                 .map(pdv -> PdvMapper.INSTANCE.pdvToPdvDto(pdv))
                 .collect(Collectors.toList());
     }
 
-    public PdvDto findById(Long id) {
-        Optional<Pdv> obj = repository.findById(id);
-        return PdvMapper.INSTANCE.pdvToPdvDto(obj.get());
+    public PdvResponseDto findById(Long id) {
+        Pdv pdv = repository.findById(id)
+                .orElseThrow(ResourceNotFoundException::new);
+        return PdvMapper.INSTANCE.pdvToPdvDto(pdv);
     }
 
+    public List<PdvResponseDto> findByName(String tradingName) {
+        return repository.findByTradingNameContainingIgnoreCase(tradingName).stream()
+                .map(pdv -> PdvMapper.INSTANCE.pdvToPdvDto(pdv))
+                .collect(Collectors.toList());
+    }
 
-
-//    public PaymentResponse findById(Long id) {
-//        Payment payment = paymentRepository
-//                .findById(id)
-//                .orElseThrow(ResourceNotFoundException::new);
-//        return PaymentMapper.INSTANCE.paymentToPaymentResponse(payment);
-//    }
+    public Pdv insert(PdvResponseDto pdvResponseDto) {
+        return repository.save(PdvMapper.INSTANCE.pdvDtoToPdv(pdvResponseDto));
+    }
 }

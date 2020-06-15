@@ -14,4 +14,12 @@ $ mysql -u root -p
 
 docker stop "container id"   
 docker start "container id"  
+
+
+
+http://localhost:8080/pdvs?trandingName=Adega  
+http://localhost:8080/pdvs  
+http://localhost:8080/pdvs/1
+
+
   

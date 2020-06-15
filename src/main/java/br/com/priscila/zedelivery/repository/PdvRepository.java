@@ -1,10 +1,14 @@
 package br.com.priscila.zedelivery.repository;
 
-import br.com.priscila.zedelivery.model.Pdv;
+import br.com.priscila.zedelivery.domain.Pdv;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PdvRepository extends JpaRepository<Pdv, Long> {
+
+    List<Pdv> findByTradingNameContainingIgnoreCase(String tradingName);
 
 }

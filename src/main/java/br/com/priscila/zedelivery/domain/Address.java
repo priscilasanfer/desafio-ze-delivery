@@ -1,6 +1,6 @@
-package br.com.priscila.zedelivery.model;
+package br.com.priscila.zedelivery.domain;
 
-import br.com.priscila.zedelivery.model.enums.Type;
+import br.com.priscila.zedelivery.domain.enums.Type;
 import com.vividsolutions.jts.geom.Point;
 import lombok.*;
 

@@ -1,7 +1,7 @@
 package br.com.priscila.zedelivery.mapper;
 
-import br.com.priscila.zedelivery.controller.dto.PdvDto;
-import br.com.priscila.zedelivery.model.Pdv;
+import br.com.priscila.zedelivery.dto.response.PdvResponseDto;
+import br.com.priscila.zedelivery.domain.Pdv;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -10,6 +10,6 @@ public interface PdvMapper {
 
     PdvMapper INSTANCE = Mappers.getMapper(PdvMapper.class);
 
-    Pdv pdvDtoToPdv(PdvDto pdvDto);
-    PdvDto pdvToPdvDto(Pdv pdv);
+    Pdv pdvDtoToPdv(PdvResponseDto pdvResponseDto);
+    PdvResponseDto pdvToPdvDto(Pdv pdv);
 }

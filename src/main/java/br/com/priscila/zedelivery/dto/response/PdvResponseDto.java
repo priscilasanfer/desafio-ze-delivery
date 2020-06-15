@@ -1,14 +1,14 @@
-package br.com.priscila.zedelivery.controller.dto;
+package br.com.priscila.zedelivery.dto.response;
 
-import br.com.priscila.zedelivery.model.Address;
-import br.com.priscila.zedelivery.model.CoverageArea;
+import br.com.priscila.zedelivery.domain.Address;
+import br.com.priscila.zedelivery.domain.CoverageArea;
 import lombok.*;
 
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PdvDto {
+public class PdvResponseDto {
     private Long id;
     private String tradingName;
     private String ownerName;

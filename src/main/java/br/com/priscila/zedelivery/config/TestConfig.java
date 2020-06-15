@@ -1,8 +1,6 @@
 package br.com.priscila.zedelivery.config;
 
-import br.com.priscila.zedelivery.model.Address;
-import br.com.priscila.zedelivery.model.Pdv;
-import br.com.priscila.zedelivery.model.enums.Type;
+import br.com.priscila.zedelivery.domain.Pdv;
 import br.com.priscila.zedelivery.repository.PdvRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vividsolutions.jts.geom.Coordinate;
@@ -47,11 +45,11 @@ public class TestConfig implements CommandLineRunner {
 //                        .type(Type.MULTIPOLYGON)
 //                        .coordinates(coordinates)
 //                        .build())
-                .address(Address.builder()
-                        .id(1L)
-                        .type(Type.POINT)
-                        .coordinates( point )
-                        .build())
+//                .address(Address.builder()
+//                        .id(1L)
+//                        .type(Type.POINT)
+//                        .coordinates( point )
+//                        .build())
                 .build();
 
         pdvRepository.saveAll(Arrays.asList(pdv1));

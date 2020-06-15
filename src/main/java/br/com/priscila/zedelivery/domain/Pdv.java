@@ -1,8 +1,13 @@
-package br.com.priscila.zedelivery.model;
+package br.com.priscila.zedelivery.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -16,10 +21,16 @@ public class Pdv {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Trading Name cannot be null")
+    @Size(min = 2, message = "Trading Name must not be less than 2 characters")
     private String tradingName;
 
+    @NotNull(message = "Trading Name cannot be null")
+    @Size(min = 2, message = "Trading Name must not be less than 2 characters")
     private String ownerName;
 
+    @NotNull(message = "Document cannot be null")
+    @Size(min = 2, message = "Document must not be less than 2 characters")
     private String document;
 
     @OneToOne(cascade = CascadeType.ALL)
