@@ -1,24 +1,23 @@
 package br.com.priscila.zedelivery.dto.request;
 
-import br.com.priscila.zedelivery.domain.Address;
-import br.com.priscila.zedelivery.domain.CoverageArea;
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometryDeserializer;
 import com.bedatadriven.jackson.datatype.jts.serialization.GeometrySerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.vividsolutions.jts.geom.Point;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Builder
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PdvRequestDto {
+@NoArgsConstructor
+public class PdvRequestDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @NotNull(message = "Trading Name cannot be null")
     @Size(min = 2, message = "Name must not be less than 2 characters")
@@ -32,13 +31,11 @@ public class PdvRequestDto {
     @Size(min = 2, message = "Document must not be less than 2 characters")
     private String document;
 
+
+    @Getter
+    @Setter
     @JsonSerialize(using = GeometrySerializer.class)
     @JsonDeserialize(contentUsing = GeometryDeserializer.class)
-    private CoverageArea coverageArea;
-
-    @JsonSerialize(using = GeometrySerializer.class)
-    @JsonDeserialize(contentUsing = GeometryDeserializer.class)
-    private Address address;
-
+    private Point address;
 
 }
