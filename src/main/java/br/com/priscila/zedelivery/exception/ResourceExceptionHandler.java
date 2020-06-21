@@ -1,6 +1,5 @@
 package br.com.priscila.zedelivery.exception;
 
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,7 +15,7 @@ public class ResourceExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
-    public StandardError resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+    public StandardError resourceNotFound( ResourceNotFoundException e, HttpServletRequest request) {
         return StandardError.builder()
                 .timestamp(Instant.now())
                 .status(HttpStatus.NOT_FOUND.value())
