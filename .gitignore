@@ -92,3 +92,8 @@ nb-configuration.xml
 .settings
 .springBeans
 .sts4-cache
+
+##############################
+### Others
+##############################
+.txt
