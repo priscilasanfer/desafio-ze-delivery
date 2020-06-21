@@ -37,4 +37,18 @@ public class ResourceExceptionHandler {
                 .path(request.getRequestURI())
                 .build();
     }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public StandardError httpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest request) {
+        return StandardError.builder()
+                .timestamp(Instant.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error("JSON parse error: Points of LinearRing do not form a closed linestring")
+                .message(e.getMessage())
+                .path(request.getRequestURI())
+                .build();
+    }
+
 }

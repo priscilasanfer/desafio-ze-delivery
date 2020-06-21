@@ -5,6 +5,7 @@ import br.com.priscila.zedelivery.dto.request.PdvRequestDto;
 import br.com.priscila.zedelivery.dto.request.PdvUpdateRequestDTO;
 import br.com.priscila.zedelivery.dto.response.PdvResponseDto;
 import br.com.priscila.zedelivery.exception.DatabaseException;
+import br.com.priscila.zedelivery.exception.HttpMessageNotReadableException;
 import br.com.priscila.zedelivery.exception.ResourceNotFoundException;
 import br.com.priscila.zedelivery.mapper.PdvMapper;
 import br.com.priscila.zedelivery.repository.PdvRepository;
@@ -59,16 +60,16 @@ public class PdvService {
     }
 
     public PdvResponseDto update(Long id, PdvUpdateRequestDTO pdvUpdateRequestDTO){
-        Pdv pdv = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
-
-        pdv.setOwnerName(pdvUpdateRequestDTO.getOwnerName());
-        pdv.setTradingName(pdvUpdateRequestDTO.getTradingName());
-        pdv.setCoverageArea(pdvUpdateRequestDTO.getCoverageArea());
-
-        pdv = repository.save(pdv);
-
-        return  PdvMapper.INSTANCE.pdvToPdvResponseDto(pdv);
-
+        try {
+            Pdv pdv = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+            pdv.setOwnerName(pdvUpdateRequestDTO.getOwnerName());
+            pdv.setTradingName(pdvUpdateRequestDTO.getTradingName());
+            pdv.setCoverageArea(pdvUpdateRequestDTO.getCoverageArea());
+            pdv = repository.save(pdv);
+            return PdvMapper.INSTANCE.pdvToPdvResponseDto(pdv);
+        } catch ( HttpMessageNotReadableException e) {
+            throw new HttpMessageNotReadableException (e.getMessage());
+        }
     }
 
 }
