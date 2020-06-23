@@ -1,8 +1,8 @@
 package br.com.priscila.zedelivery.mapper;
 
+import br.com.priscila.zedelivery.domain.Pdv;
 import br.com.priscila.zedelivery.dto.request.PdvRequestDto;
 import br.com.priscila.zedelivery.dto.response.PdvResponseDto;
-import br.com.priscila.zedelivery.domain.Pdv;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

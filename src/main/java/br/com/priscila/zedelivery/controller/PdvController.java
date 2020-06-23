@@ -5,16 +5,11 @@ import br.com.priscila.zedelivery.dto.request.PdvRequestDto;
 import br.com.priscila.zedelivery.dto.request.PdvUpdateRequestDTO;
 import br.com.priscila.zedelivery.dto.response.PdvResponseDto;
 import br.com.priscila.zedelivery.services.PdvService;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -46,25 +41,25 @@ public class PdvController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PdvResponseDto createPdv(@Valid @RequestBody PdvRequestDto pdvRequestDto){
+    public PdvResponseDto createPdv(@Valid @RequestBody PdvRequestDto pdvRequestDto) {
         return service.insert(pdvRequestDto);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete (@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PdvResponseDto updatePdv(@PathVariable Long id, @Valid @RequestBody PdvUpdateRequestDTO updateRequestDTO){
+    public PdvResponseDto updatePdv(@PathVariable Long id, @Valid @RequestBody PdvUpdateRequestDTO updateRequestDTO) {
         return service.update(id, updateRequestDTO);
     }
 
     @GetMapping("/partner")
     @ResponseStatus(HttpStatus.OK)
-    public PdvResponseDto getCloserPdvBy(@RequestParam("lat") Double lat, @RequestParam("lgn") Double lgn){
+    public PdvResponseDto getCloserPdvBy(@RequestParam("lat") Double lat, @RequestParam("lgn") Double lgn) {
 
         return service.search(lat, lgn);
 

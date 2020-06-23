@@ -15,7 +15,7 @@ public class ResourceExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
-    public StandardError resourceNotFound( ResourceNotFoundException e, HttpServletRequest request) {
+    public StandardError resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
         return StandardError.builder()
                 .timestamp(Instant.now())
                 .status(HttpStatus.NOT_FOUND.value())

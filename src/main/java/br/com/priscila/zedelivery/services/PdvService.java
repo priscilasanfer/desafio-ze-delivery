@@ -10,7 +10,6 @@ import br.com.priscila.zedelivery.exception.ResourceNotFoundException;
 import br.com.priscila.zedelivery.mapper.PdvMapper;
 import br.com.priscila.zedelivery.repository.PdvRepository;
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 import lombok.AllArgsConstructor;
@@ -19,7 +18,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,7 +76,7 @@ public class PdvService {
 
     public PdvResponseDto search(Double lat, Double lgn) {
         GeometryFactory geometryFactory = new GeometryFactory();
-        Point point = geometryFactory.createPoint(new Coordinate(lat,lgn));
+        Point point = geometryFactory.createPoint(new Coordinate(lat, lgn));
 
         List<Pdv> list = repository.findAll();
 
@@ -86,8 +84,8 @@ public class PdvService {
         Double lessDistant = Double.MAX_VALUE;
         Pdv closestPDV = null;
 
-        for (Pdv pdv: list) {
-            if(!point.equalsExact(pdv.getAddress())){
+        for (Pdv pdv : list) {
+            if (!point.equalsExact(pdv.getAddress())) {
                 pdvDistance = Point2D.distance(lat, pdv.getAddress().getX(), lgn, pdv.getAddress().getY());
                 System.out.println(pdvDistance);
                 if (pdvDistance < lessDistant) {
