@@ -13,8 +13,8 @@ docker start "container id"
 GET http://localhost:8080/pdvs?trandingName=Adega    
 GET http://localhost:8080/pdvs   
 POST http://localhost:8080/pdvs   
-GET http://localhost:8080/pdvs/1 
-PUT http://localhost:8080/pdvs/1  
+GET http://localhost:8080/pdvs/1   
+PUT http://localhost:8080/pdvs/1     
 GET http://localhost:8080/pdvs/partner?lgn=-3.7364947&lat=-38.736494   
 
 
